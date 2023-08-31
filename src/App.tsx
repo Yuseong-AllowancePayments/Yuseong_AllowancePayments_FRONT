@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import MainRouter from "./router/MainRouter";
 import GlobalStyle from "./style/GlobalStyle";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
+import MainRouter from "./router/MainRouter";
 
 function App() {
   const queryClient = new QueryClient();
@@ -9,9 +9,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-      <BrowserRouter>
+      <Router>
         <MainRouter />
-      </BrowserRouter>
+      </Router>
     </QueryClientProvider>
   );
 }
