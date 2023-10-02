@@ -11,7 +11,7 @@ const Tab = ({ clickItem, setClickItem }: TabProps) => {
     <Container>
       {tabItem.map((item, idx) => (
         <Button
-          isClick={clickItem === item}
+          $is_click={clickItem === item}
           onClick={() => setClickItem(item)}
           key={idx}
         >
@@ -30,16 +30,16 @@ const Container = styled.div`
   gap: 48px;
 `;
 
-const Button = styled.button<{ isClick: boolean }>`
+const Button = styled.button<{ $is_click: boolean }>`
   height: inherit;
   border: none;
   background: none;
   font-size: 20px;
   font-weight: 600;
-  color: ${(props) =>
-    props.isClick ? props.theme.colors.primary : props.theme.colors.gray900};
-  border-bottom: ${(props) =>
-    props.isClick ? `2px solid ${props.theme.colors.primary}` : "none"};
+  color: ${({ $is_click, theme }) =>
+    $is_click ? theme.colors.primary : theme.colors.gray900};
+  border-bottom: ${({ $is_click, theme }) =>
+    $is_click ? `2px solid ${theme.colors.primary}` : "none"};
 `;
 
 export default Tab;
