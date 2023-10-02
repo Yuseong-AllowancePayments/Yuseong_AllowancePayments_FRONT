@@ -15,15 +15,21 @@ const Header = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 40px;
+  height: 62px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  > img {
+    height: 36px;
+  }
 `;
 
 const Right = styled.div`
   display: flex;
   align-items: center;
   gap: 36px;
+
   > p {
     color: ${({ theme }) => theme.colors.gray900};
     font-size: 18px;
