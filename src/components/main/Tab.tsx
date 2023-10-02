@@ -1,21 +1,21 @@
 import styled from "styled-components";
-import { tabItem } from "../../constants/main";
+import { TabItemType, TabItemInfo } from "../../constants/main";
 
 interface TabProps {
-  clickItem: string;
-  setClickItem: React.Dispatch<React.SetStateAction<string>>;
+  clickItemInfo: TabItemType;
+  setClickItemInfo: React.Dispatch<React.SetStateAction<TabItemType>>;
 }
 
-const Tab = ({ clickItem, setClickItem }: TabProps) => {
+const Tab = ({ clickItemInfo, setClickItemInfo }: TabProps) => {
   return (
     <Container>
-      {tabItem.map((item, idx) => (
+      {TabItemInfo.map((item, idx) => (
         <Button
-          $is_click={clickItem === item}
-          onClick={() => setClickItem(item)}
+          $is_click={clickItemInfo.tabItem === item.tabItem}
+          onClick={() => setClickItemInfo(item)}
           key={idx}
         >
-          {item}
+          {item.tabItem}
         </Button>
       ))}
     </Container>
@@ -36,6 +36,7 @@ const Button = styled.button<{ $is_click: boolean }>`
   background: none;
   font-size: 20px;
   font-weight: 600;
+  line-height: 28px;
   color: ${({ $is_click, theme }) =>
     $is_click ? theme.colors.primary : theme.colors.gray900};
   border-bottom: ${({ $is_click, theme }) =>
