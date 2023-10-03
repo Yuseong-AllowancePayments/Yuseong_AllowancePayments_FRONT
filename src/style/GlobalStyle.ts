@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     box-sizing: border-box;
     margin: 0;
+    outline: none;
   }
 `;
 
