@@ -15,7 +15,11 @@ const ExcelBody = () => {
         </thead>
         <tbody>
           {Values.map((value, idx) => (
-            <ExcelValue key={idx} value={value} />
+            <tr key={idx}>
+              {value.map((value, idx) => (
+                <ExcelValue key={idx} value={value} />
+              ))}
+            </tr>
           ))}
         </tbody>
       </Container>
