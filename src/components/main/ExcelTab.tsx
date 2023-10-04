@@ -27,10 +27,11 @@ const Container = styled.div`
   height: 50px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray100};
   display: flex;
-  gap: 30px;
+  gap: 3vw;
 `;
 
 const Button = styled.button<{ $is_click: boolean }>`
+  padding-top: ${({ $is_click }) => $is_click && "2px"};
   height: inherit;
   border: none;
   background: none;
