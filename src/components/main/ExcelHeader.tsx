@@ -43,6 +43,7 @@ const ExcelUploadButton = styled.button`
   border: none;
   background: ${({ theme }) => theme.colors.gray100};
   color: ${({ theme }) => theme.colors.gray700};
+  cursor: pointer;
 `;
 
 const ExcelOutputButton = styled.button`
@@ -56,6 +57,7 @@ const ExcelOutputButton = styled.button`
   border: none;
   background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.WHITE};
+  cursor: pointer;
 `;
 
 export default ExcelHeader;

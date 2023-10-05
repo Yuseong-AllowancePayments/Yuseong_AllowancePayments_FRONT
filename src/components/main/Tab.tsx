@@ -42,6 +42,7 @@ const Button = styled.button<{ $is_click: boolean }>`
     $is_click ? theme.colors.primary : theme.colors.gray900};
   border-bottom: ${({ $is_click, theme }) =>
     $is_click ? `2px solid ${theme.colors.primary}` : "none"};
+  cursor: pointer;
 `;
 
 export default Tab;
