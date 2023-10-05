@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import ExcelHeader from "./ExcelHeader";
 import { useState } from "react";
-import { ExcelTabItemInfo, ExcelTabItemType } from "../../constants/main";
+import {
+  ExcelTabItemInfo,
+  ExcelTabItemType,
+  Values,
+} from "../../constants/main";
 import ExcelBody from "./ExcelBody";
+import NoData from "./NoData";
 
 const Excel = () => {
   const [clickItemInfo, setClickItemInfo] = useState<ExcelTabItemType>(
@@ -15,7 +20,7 @@ const Excel = () => {
         clickItemInfo={clickItemInfo}
         setClickItemInfo={setClickItemInfo}
       />
-      <ExcelBody />
+      {Values.length === 0 ? <NoData /> : <ExcelBody />}
     </Container>
   );
 };
