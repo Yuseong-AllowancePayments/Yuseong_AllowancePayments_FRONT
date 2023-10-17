@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ExcelTab from "./ExcelTab";
 import { ExcelTabItemType } from "../../constants/main";
+import { useRef } from "react";
 
 interface ExcelHeaderProps {
   clickItemInfo: ExcelTabItemType;
@@ -8,6 +9,8 @@ interface ExcelHeaderProps {
 }
 
 const ExcelHeader = ({ clickItemInfo, setClickItemInfo }: ExcelHeaderProps) => {
+  const ref = useRef<HTMLInputElement>(null);
+
   return (
     <Container>
       <ExcelTab
@@ -15,7 +18,19 @@ const ExcelHeader = ({ clickItemInfo, setClickItemInfo }: ExcelHeaderProps) => {
         setClickItemInfo={setClickItemInfo}
       />
       <ButtonBox>
-        <ExcelUploadButton>엑셀파일 업로드</ExcelUploadButton>
+        <ExcelUploadButton
+          onClick={() => {
+            ref.current!.click();
+          }}
+        >
+          엑셀파일 업로드
+        </ExcelUploadButton>
+        <input
+          style={{ display: "none" }}
+          type="file"
+          ref={ref}
+          onChange={() => ""}
+        />
         <ExcelOutputButton>엑셀파일 출력</ExcelOutputButton>
       </ButtonBox>
     </Container>
@@ -33,8 +48,7 @@ const ButtonBox = styled.div`
 `;
 
 const ExcelUploadButton = styled.button`
-  width: 9vw;
-  min-width: 114px;
+  width: 133px;
   height: 40px;
   border-radius: 8px;
   font-weight: 500;
@@ -47,8 +61,7 @@ const ExcelUploadButton = styled.button`
 `;
 
 const ExcelOutputButton = styled.button`
-  width: 9vw;
-  min-width: 100px;
+  width: 133px;
   height: 40px;
   border-radius: 8px;
   font-weight: 500;
