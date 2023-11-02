@@ -7,6 +7,7 @@ const ExcelValue = ({ value }: { value: string }) => {
   return (
     <Wrapper>
       <input
+        style={{ width: `${value.length * 14}px` }}
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -22,7 +23,6 @@ const Wrapper = styled.td`
   background: ${({ theme }) => theme.colors.WHITE};
 
   > input {
-    width: 100%;
     height: 100%;
     border: none;
     font-size: 16px;
