@@ -31,7 +31,7 @@ const ExcelHeader = ({ clickItemInfo, setClickItemInfo }: ExcelHeaderProps) => {
           ref={ref}
           onChange={() => ""}
         />
-        <ExcelOutputButton>엑셀파일 출력</ExcelOutputButton>
+        <ExcelOutputButton>엑셀파일 다운로드</ExcelOutputButton>
       </ButtonBox>
     </Container>
   );
