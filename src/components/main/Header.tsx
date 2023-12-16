@@ -6,8 +6,9 @@ const Header = () => {
         <Container>
             <img src={HeaderLogo} alt="로고 이미지" />
             <Right>
-                <p>홍길동 님</p>
-                <LogOutButton>로그아웃</LogOutButton>
+                <LogOutButton onClick={() => {}}>
+                    로그아웃
+                </LogOutButton>
             </Right>
         </Container>
     );
@@ -47,6 +48,7 @@ const LogOutButton = styled.button`
     font-size: 16px;
     color: ${({ theme }) => theme.colors.gray700};
     background: ${({ theme }) => theme.colors.gray100};
+    cursor: pointer;
 `;
 
 export default Header;

@@ -2,11 +2,19 @@ import { userLoginRequestDto } from "../../models/request";
 import { userLoginResponseDto } from "../../models/response";
 import instance from "../axios";
 
-export const userLogin = async (request: userLoginRequestDto) => {
-  const { accountId, password } = request;
+const path = "/auth";
 
-  return await instance.post<userLoginResponseDto>("/auth/admin/token", {
-    accountId: accountId,
-    password: password,
-  });
+export const userLogin = async ({
+    accountId,
+    password,
+}: userLoginRequestDto) => {
+    const { data } = await instance.post<userLoginResponseDto>(
+        `${path}/admin/token`,
+        {
+            accountId: accountId,
+            password: password,
+        }
+    );
+
+    return data;
 };
