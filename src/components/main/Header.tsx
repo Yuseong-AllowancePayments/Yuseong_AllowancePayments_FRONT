@@ -1,13 +1,21 @@
 import styled from "styled-components";
 import { HeaderLogo } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigator = useNavigate();
     return (
         <Container>
             <img src={HeaderLogo} alt="로고 이미지" />
             <Right>
-                <p>홍길동 님</p>
-                <LogOutButton>로그아웃</LogOutButton>
+                <LogOutButton
+                    onClick={() => {
+                        localStorage.removeItem("access_token");
+                        navigator("/");
+                    }}
+                >
+                    로그아웃
+                </LogOutButton>
             </Right>
         </Container>
     );
@@ -47,6 +55,7 @@ const LogOutButton = styled.button`
     font-size: 16px;
     color: ${({ theme }) => theme.colors.gray700};
     background: ${({ theme }) => theme.colors.gray100};
+    cursor: pointer;
 `;
 
 export default Header;
