@@ -5,7 +5,13 @@ import { newComerTabType } from "../../models/response";
 import { useEditExcelNewcomer } from "../../utils/api/Allowance";
 import { debounce } from "lodash";
 
-const NewComerWarVeteranTabBody = ({ data }: { data: newComerTabType }) => {
+const NewComerWarVeteranTabBody = ({
+    data,
+    refetch,
+}: {
+    data: newComerTabType;
+    refetch: () => void;
+}) => {
     const { form, setForm, handleChange } = useForm({
         id: 0,
         serialNumber: "",
@@ -49,6 +55,7 @@ const NewComerWarVeteranTabBody = ({ data }: { data: newComerTabType }) => {
     const { mutate } = useEditExcelNewcomer({
         id: data.id,
         excelLine: rest as any,
+        refetch
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

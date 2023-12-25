@@ -7,8 +7,10 @@ import { useEditExcelStopped } from "../../utils/api/Allowance";
 
 const ExcelPaymentStoppedTabBody = ({
     data,
+    refetch,
 }: {
     data: paymentStoppedTabType;
+    refetch: () => void;
 }) => {
     const { form, setForm, handleChange } = useForm({
         accountHolder: "",
@@ -51,7 +53,11 @@ const ExcelPaymentStoppedTabBody = ({
     }, []);
 
     const { id, ...rest } = form;
-    const { mutate } = useEditExcelStopped({ id: data.id, excelLine: rest });
+    const { mutate } = useEditExcelStopped({
+        id: data.id,
+        excelLine: rest,
+        refetch,
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const editExcelForm = useCallback(

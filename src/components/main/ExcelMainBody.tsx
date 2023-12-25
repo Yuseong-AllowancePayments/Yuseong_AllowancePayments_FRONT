@@ -19,7 +19,13 @@ import NewComerHonorableAllowanceTabBody from "./NewComerHonorableAllowanceTabBo
 import ExcelPaymentStoppedTabBody from "./ExcelPaymentStoppedTabBody";
 import ExcelPaymentTargetTabBody from "./ExcelPaymentTargetTabBody";
 
-const ExcelMainBody = ({ data }: { data: getExcelResponseDto }) => {
+const ExcelMainBody = ({
+    data,
+    refetch,
+}: {
+    data: getExcelResponseDto;
+    refetch: () => void;
+}) => {
     const { excelTab } = useExcelTabTypeState();
     const { excelType } = useExcelTypeState();
 
@@ -32,6 +38,7 @@ const ExcelMainBody = ({ data }: { data: getExcelResponseDto }) => {
                             data &&
                             data[excelTab].map((item, idx) => (
                                 <NewComerWarVeteranTabBody
+                                    refetch={refetch}
                                     key={idx}
                                     data={item}
                                 />
@@ -42,6 +49,7 @@ const ExcelMainBody = ({ data }: { data: getExcelResponseDto }) => {
                             data &&
                             data[excelTab].map((item, idx) => (
                                 <NewComerHonorableAllowanceTabBody
+                                    refetch={refetch}
                                     key={idx}
                                     data={item}
                                 />
@@ -52,6 +60,7 @@ const ExcelMainBody = ({ data }: { data: getExcelResponseDto }) => {
                             data &&
                             data[excelTab].map((item, idx) => (
                                 <NewComerWarVeteranSpouseTabBody
+                                    refetch={refetch}
                                     key={idx}
                                     data={item}
                                 />
@@ -62,6 +71,7 @@ const ExcelMainBody = ({ data }: { data: getExcelResponseDto }) => {
                             data &&
                             data[excelTab].map((item, idx) => (
                                 <NewComerWarVeteranTabBody
+                                    refetch={refetch}
                                     key={idx}
                                     data={item}
                                 />
@@ -72,21 +82,33 @@ const ExcelMainBody = ({ data }: { data: getExcelResponseDto }) => {
                 return (
                     data &&
                     data[excelTab].map((item, idx) => (
-                        <ExcelPaymentStoppedTabBody key={idx} data={item} />
+                        <ExcelPaymentStoppedTabBody
+                            key={idx}
+                            data={item}
+                            refetch={refetch}
+                        />
                     ))
                 );
             case "paymentTargetTab":
                 return (
                     data &&
                     data[excelTab].map((item, idx) => (
-                        <ExcelPaymentTargetTabBody key={idx} data={item} />
+                        <ExcelPaymentTargetTabBody
+                            key={idx}
+                            data={item}
+                            refetch={refetch}
+                        />
                     ))
                 );
             case "cashPaymentTab":
                 return (
                     data &&
                     data[excelTab].map((item, idx) => (
-                        <ExcelCashPaymentTabBody key={idx} data={item} />
+                        <ExcelCashPaymentTabBody
+                            key={idx}
+                            data={item}
+                            refetch={refetch}
+                        />
                     ))
                 );
         }

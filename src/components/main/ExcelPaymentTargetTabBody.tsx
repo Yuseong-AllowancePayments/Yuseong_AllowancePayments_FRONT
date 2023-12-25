@@ -5,7 +5,13 @@ import ExcelValue from "./ExcelValue";
 import { useEditExcelTarget } from "../../utils/api/Allowance";
 import { debounce } from "lodash";
 
-const ExcelPaymentTargetTabBody = ({ data }: { data: paymentTargetTabType }) => {
+const ExcelPaymentTargetTabBody = ({
+    data,
+    refetch,
+}: {
+    data: paymentTargetTabType;
+    refetch: () => void;
+}) => {
     const { form, setForm, handleChange } = useForm({
         accountHolder: "",
         address: "",
@@ -40,7 +46,11 @@ const ExcelPaymentTargetTabBody = ({ data }: { data: paymentTargetTabType }) => 
     } = form;
 
     const { id, ...rest } = form;
-    const { mutate } = useEditExcelTarget({ id: data.id, excelLine: rest });
+    const { mutate } = useEditExcelTarget({
+        id: data.id,
+        excelLine: rest,
+        refetch,
+    });
 
     useEffect(() => {
         setForm(data);

@@ -25,7 +25,7 @@ const Excel = () => {
             {data && !data[excelTab]?.length ? (
                 <NoData />
             ) : (
-                <ExcelBody data={data!} />
+                <ExcelBody data={data!} refetch={refetch} />
             )}
         </Container>
     );

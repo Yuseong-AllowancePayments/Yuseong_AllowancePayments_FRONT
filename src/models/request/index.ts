@@ -24,20 +24,24 @@ export interface userLoginRequestDto {
 
 export interface editExcelTargetRequestDto {
     excelLine: Omit<paymentTargetTabType, "id">;
+    refetch: () => void;
     id: number;
 }
 
 export interface editExcelCashRequestDto {
     excelLine: Omit<cashPaymentTabType, "id">;
+    refetch: () => void;
     id: number;
 }
 
 export interface editExcelNewcomerRequestDto {
     excelLine: Omit<newComerTabType, "id">;
+    refetch: () => void;
     id: number;
 }
 
 export interface editExcelStoppedRequestDto {
     excelLine: Omit<paymentStoppedTabType, "id">;
+    refetch: () => void;
     id: number;
 }

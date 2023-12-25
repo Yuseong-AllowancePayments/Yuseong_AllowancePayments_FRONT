@@ -8,8 +8,10 @@ import { useEditExcelNewcomer } from "../../utils/api/Allowance";
 // 전입일 < 신청일
 const NewComerWarVeteranSpouseTabBody = ({
     data,
+    refetch,
 }: {
     data: newComerTabType;
+    refetch: () => void;
 }) => {
     const { form, setForm, handleChange } = useForm({
         accountHolder: "",
@@ -60,6 +62,7 @@ const NewComerWarVeteranSpouseTabBody = ({
     const { mutate } = useEditExcelNewcomer({
         id: data.id,
         excelLine: rest as any,
+        refetch,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

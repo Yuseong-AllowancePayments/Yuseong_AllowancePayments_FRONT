@@ -13,7 +13,7 @@ function App() {
                 keepPreviousData: true,
                 refetchOnWindowFocus: true,
                 refetchOnMount: true,
-                staleTime: 2000,
+                staleTime: 60000,
                 retry: 1,
             },
         },

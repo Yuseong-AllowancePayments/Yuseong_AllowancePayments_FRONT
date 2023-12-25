@@ -97,9 +97,15 @@ export const useExportExcel = (type: excelFileType) => {
 export const useEditExcelTarget = ({
     id,
     excelLine,
+    refetch,
 }: editExcelTargetRequestDto) => {
-    return useMutation(async () =>
-        instance.patch(`${path}/target/${id}`, excelLine)
+    return useMutation(
+        async () => instance.patch(`${path}/target/${id}`, excelLine),
+        {
+            onSuccess: () => {
+                refetch();
+            },
+        }
     );
 };
 
@@ -107,9 +113,15 @@ export const useEditExcelTarget = ({
 export const useEditExcelCash = ({
     id,
     excelLine,
+    refetch,
 }: editExcelCashRequestDto) => {
-    return useMutation(async () =>
-        instance.patch(`${path}/cash/${id}`, excelLine)
+    return useMutation(
+        async () => instance.patch(`${path}/cash/${id}`, excelLine),
+        {
+            onSuccess: () => {
+                refetch();
+            },
+        }
     );
 };
 
@@ -117,9 +129,15 @@ export const useEditExcelCash = ({
 export const useEditExcelNewcomer = ({
     id,
     excelLine,
+    refetch,
 }: editExcelNewcomerRequestDto) => {
-    return useMutation(async () =>
-        instance.patch(`${path}/newcomer/${id}`, excelLine)
+    return useMutation(
+        async () => instance.patch(`${path}/newcomer/${id}`, excelLine),
+        {
+            onSuccess: () => {
+                refetch();
+            },
+        }
     );
 };
 
@@ -127,8 +145,14 @@ export const useEditExcelNewcomer = ({
 export const useEditExcelStopped = ({
     id,
     excelLine,
+    refetch,
 }: editExcelStoppedRequestDto) => {
-    return useMutation(async () =>
-        instance.patch(`${path}/stopped/${id}`, excelLine)
+    return useMutation(
+        async () => instance.patch(`${path}/stopped/${id}`, excelLine),
+        {
+            onSuccess: () => {
+                refetch();
+            },
+        }
     );
 };

@@ -7,8 +7,10 @@ import { useEditExcelNewcomer } from "../../utils/api/Allowance";
 
 const NewComerHonorableAllowanceTabBody = ({
     data,
+    refetch,
 }: {
     data: newComerTabType;
+    refetch: () => void;
 }) => {
     const { form, setForm, handleChange } = useForm({
         accountHolder: "",
@@ -61,6 +63,7 @@ const NewComerHonorableAllowanceTabBody = ({
     const { mutate } = useEditExcelNewcomer({
         id: data.id,
         excelLine: rest as any,
+        refetch,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

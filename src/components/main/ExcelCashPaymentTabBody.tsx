@@ -5,7 +5,13 @@ import ExcelValue from "./ExcelValue";
 import { useEditExcelCash } from "../../utils/api/Allowance";
 import { debounce } from "lodash";
 
-const ExcelCashPaymentTabBody = ({ data }: { data: cashPaymentTabType }) => {
+const ExcelCashPaymentTabBody = ({
+    data,
+    refetch,
+}: {
+    data: cashPaymentTabType;
+    refetch: () => void;
+}) => {
     const { form, setForm, handleChange } = useForm({
         address: "",
         depositType: "",
@@ -39,7 +45,11 @@ const ExcelCashPaymentTabBody = ({ data }: { data: cashPaymentTabType }) => {
     }, []);
 
     const { id, ...rest } = form;
-    const { mutate } = useEditExcelCash({ id: data.id, excelLine: rest });
+    const { mutate } = useEditExcelCash({
+        id: data.id,
+        excelLine: rest,
+        refetch,
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const editExcelForm = useCallback(
