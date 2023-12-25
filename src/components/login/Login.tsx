@@ -2,14 +2,17 @@ import styled from "styled-components";
 import { CloseEye, Logo, OpenEye } from "../../assets";
 import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
+import { useUserLogin } from "../../utils/api/Auth";
 
 const Login = () => {
     const [isPassword, setIsPassword] = useState(true);
     const { form: signForm, handleChange: signFormChange } = useForm({
-        id: "",
+        accountId: "",
         password: "",
     });
-    const { id, password } = signForm;
+    const { accountId, password } = signForm;
+
+    const { mutate } = useUserLogin(signForm);
 
     return (
         <Container>
@@ -22,8 +25,8 @@ const Login = () => {
                 <InputWrapper>
                     <LabelText>아이디</LabelText>
                     <Input
-                        name="id"
-                        value={id}
+                        name="accountId"
+                        value={accountId}
                         onChange={signFormChange}
                         placeholder="아이디를 입력해주세요."
                     />
@@ -35,6 +38,13 @@ const Login = () => {
                         name="password"
                         value={password}
                         onChange={signFormChange}
+                        onKeyPress={(
+                            e: React.KeyboardEvent<HTMLInputElement>
+                        ) => {
+                            if (e.key === "Enter") {
+                                mutate();
+                            }
+                        }}
                         placeholder="비밀번호를 입력해주세요."
                     />
                     <EyeImg
@@ -45,7 +55,7 @@ const Login = () => {
                 </InputWrapper>
                 <Button
                     onClick={() => {
-                        // 로그인 api 호출
+                        mutate();
                     }}
                 >
                     로그인

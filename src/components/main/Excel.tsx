@@ -1,34 +1,40 @@
 import styled from "styled-components";
 import ExcelHeader from "./ExcelHeader";
-import { useState } from "react";
-import {
-  ExcelTabItemInfo,
-  ExcelTabItemType,
-  Values,
-} from "../../constants/main";
-import ExcelBody from "./ExcelBody";
+import ExcelBody from "./ExcelMainBody";
 import NoData from "./NoData";
+import { useGetExcel } from "../../utils/api/Allowance";
+import {
+    useExcelTabTypeState,
+    useExcelTypeState,
+} from "../../store/questionState";
+import { useEffect } from "react";
 
 const Excel = () => {
-  const [clickItemInfo, setClickItemInfo] = useState<ExcelTabItemType>(
-    ExcelTabItemInfo[0]
-  );
+    const { excelType } = useExcelTypeState();
+    const { excelTab } = useExcelTabTypeState();
+    const { data, refetch } = useGetExcel(excelType);
 
-  return (
-    <Container>
-      <ExcelHeader
-        clickItemInfo={clickItemInfo}
-        setClickItemInfo={setClickItemInfo}
-      />
-      {Values.length === 0 ? <NoData /> : <ExcelBody />}
-    </Container>
-  );
+    useEffect(() => {
+        refetch();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [excelType]);
+
+    return (
+        <Container>
+            <ExcelHeader refetch={refetch}/>
+            {data && !data[excelTab]?.length ? (
+                <NoData />
+            ) : (
+                <ExcelBody data={data!} />
+            )}
+        </Container>
+    );
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 `;
 
 export default Excel;

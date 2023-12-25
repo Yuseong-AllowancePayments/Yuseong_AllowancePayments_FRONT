@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import { HeaderLogo } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigator = useNavigate();
     return (
         <Container>
             <img src={HeaderLogo} alt="로고 이미지" />
             <Right>
-                <LogOutButton onClick={() => {}}>
+                <LogOutButton
+                    onClick={() => {
+                        localStorage.removeItem("access_token");
+                        navigator("/");
+                    }}
+                >
                     로그아웃
                 </LogOutButton>
             </Right>
