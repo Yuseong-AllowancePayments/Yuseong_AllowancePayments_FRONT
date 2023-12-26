@@ -58,11 +58,13 @@ export const useExcelDataState = create<excelDataState>()(
 interface excelTabTypeState {
     excelTab: excelTabType;
     setExcelTab: (tab: excelTabType) => void;
+    resetExcelTab: () => void;
 }
 
 export const useExcelTabTypeState = create<excelTabTypeState>()(
     devtools((set) => ({
         excelTab: "paymentTargetTab",
         setExcelTab: (tab: excelTabType) => set({ excelTab: tab }),
+        resetExcelTab: () => set({ excelTab: "paymentTargetTab" }),
     }))
 );

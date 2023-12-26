@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { TabItemType, TabItemInfo } from "../../constants/main";
-import { useExcelTypeState } from "../../store/questionState";
+import {
+    useExcelTabTypeState,
+    useExcelTypeState,
+} from "../../store/questionState";
 import { excelTypes } from "../../utils/functions/Translation";
 
 interface TabProps {
@@ -10,6 +13,7 @@ interface TabProps {
 
 const Tab = ({ clickItemInfo, setClickItemInfo }: TabProps) => {
     const { setExcelType } = useExcelTypeState();
+    const { resetExcelTab } = useExcelTabTypeState();
     return (
         <Container>
             {TabItemInfo.map((item, idx) => (
@@ -18,6 +22,7 @@ const Tab = ({ clickItemInfo, setClickItemInfo }: TabProps) => {
                     onClick={() => {
                         setClickItemInfo(item);
                         setExcelType(excelTypes[item.tabItem]);
+                        resetExcelTab();
                     }}
                     key={idx}
                 >
