@@ -4,6 +4,7 @@ import ExcelValue from "./ExcelValue";
 import { newComerTabType } from "../../models/response";
 import { useEditExcelNewcomer } from "../../utils/api/Allowance";
 import { debounce } from "lodash";
+import { regex } from "../../utils/functions/regex";
 
 const NewComerWarVeteranTabBody = ({
     data,
@@ -55,7 +56,7 @@ const NewComerWarVeteranTabBody = ({
     const { mutate } = useEditExcelNewcomer({
         id: data.id,
         excelLine: rest as any,
-        refetch
+        refetch,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,6 +99,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.serialNumber.test(serialNumber)}
             />
             <ExcelValue
                 name="warRegistrationNumber"
@@ -106,6 +108,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.veteransNumber.test(warRegistrationNumber)}
             />
             <ExcelValue
                 name="applicantName"
@@ -114,6 +117,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(applicantName)}
             />
             <ExcelValue
                 name="applicantID"
@@ -122,6 +126,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.residentRegistrationNumber.test(applicantID)}
             />
             <ExcelValue
                 name="applicantBirthday"
@@ -130,6 +135,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.date.test(applicantBirthday)}
             />
             <ExcelValue
                 name="applicantPostalCode"
@@ -138,6 +144,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.postalCode.test(applicantPostalCode)}
             />
             <ExcelValue
                 name="applicantAddressDetail"
@@ -146,6 +153,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!applicantAddressDetail}
             />
             <ExcelValue
                 name="hangJungDong"
@@ -154,6 +162,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.hangjungdong.test(hangJungDong)}
             />
             <ExcelValue
                 name="applicantPhoneNumber"
@@ -162,6 +171,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.phoneNumber.test(applicantPhoneNumber)}
             />
             <ExcelValue
                 name="bankName"
@@ -170,6 +180,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.bankName.test(bankName)}
             />
             <ExcelValue
                 name="bankAccountNumber"
@@ -178,6 +189,14 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={
+                    !regex
+                        .newBankAccountNumber(bankName.split(":")[0])
+                        .test(bankAccountNumber) &&
+                    !regex
+                        .oldBankAccountNumber(bankName.split(":")[0])
+                        .test(bankAccountNumber)
+                }
             />
             <ExcelValue
                 name="accountHolder"
@@ -186,6 +205,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(accountHolder)}
             />
             <ExcelValue
                 name="transferDate"
@@ -194,6 +214,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.date.test(transferDate)}
             />
             <ExcelValue
                 name="applicationDate"
@@ -202,6 +223,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.date.test(applicationDate)}
             />
             <ExcelValue
                 name="applicationReason"
@@ -210,6 +232,7 @@ const NewComerWarVeteranTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!applicationReason}
             />
             <ExcelValue
                 name="note"

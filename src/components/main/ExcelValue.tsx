@@ -49,13 +49,15 @@ const ExcelValue = ({
 };
 
 const Wrapper = styled.td<{ disabled: boolean; error: boolean }>`
-    border: 1px solid
-        ${({ theme, error }) =>
-            error ? theme.colors.red : theme.colors.gray200};
+    border: 1px solid ${({ theme }) => theme.colors.gray200};
     height: 56px;
-    background: ${({ theme, disabled }) =>
-        disabled ? theme.colors.gray100 : theme.colors.WHITE};
-    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
+    background-color: ${({ theme, error }) =>
+        error ? "#FFB5B5" : theme.colors.WHITE};
+    cursor: "text";
+    &:disabled {
+        background: ${({ theme }) => theme.colors.gray100};
+        cursor: not-allowed;
+    }
     > input {
         max-width: 500px;
         height: 100%;
@@ -66,6 +68,8 @@ const Wrapper = styled.td<{ disabled: boolean; error: boolean }>`
         min-width: 150px;
         padding: 0 20px;
         color: ${({ theme }) => theme.colors.gray900};
+        background-color: ${({ theme, error }) =>
+            error ? "#FFB5B5" : theme.colors.WHITE};
         &:disabled {
             background: ${({ theme, disabled }) =>
                 disabled ? theme.colors.gray100 : theme.colors.WHITE};

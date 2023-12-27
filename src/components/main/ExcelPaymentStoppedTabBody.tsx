@@ -4,6 +4,7 @@ import { paymentStoppedTabType } from "../../models/response";
 import ExcelValue from "./ExcelValue";
 import { debounce } from "lodash";
 import { useEditExcelStopped } from "../../utils/api/Allowance";
+import { regex } from "../../utils/functions/regex";
 
 const ExcelPaymentStoppedTabBody = ({
     data,
@@ -76,6 +77,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.serialNumber.test(serialNumber)}
             />
             <ExcelValue
                 name="hangJungDong"
@@ -84,6 +86,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.hangjungdong.test(hangJungDong)}
             />
             <ExcelValue
                 name="veteransNumber"
@@ -92,6 +95,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.veteransNumber.test(veteransNumber)}
             />
             <ExcelValue
                 name="name"
@@ -100,6 +104,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(name)}
             />
             <ExcelValue
                 name="residentRegistrationNumber"
@@ -108,6 +113,11 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={
+                    !regex.residentRegistrationNumber.test(
+                        residentRegistrationNumber
+                    )
+                }
             />
             <ExcelValue
                 name="address"
@@ -116,6 +126,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!address}
             />
             <ExcelValue
                 name="depositType"
@@ -124,6 +135,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.depositType.test(depositType)}
             />
             <ExcelValue
                 name="bankName"
@@ -132,6 +144,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.bankName.test(bankName)}
             />
             <ExcelValue
                 name="accountHolder"
@@ -140,6 +153,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(accountHolder)}
             />
             <ExcelValue
                 name="bankAccountNumber"
@@ -148,6 +162,14 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={
+                    !regex
+                        .newBankAccountNumber(bankName.split(":")[0])
+                        .test(bankAccountNumber) &&
+                    !regex
+                        .oldBankAccountNumber(bankName.split(":")[0])
+                        .test(bankAccountNumber)
+                }
             />
             <ExcelValue
                 name="stoppedReason"
@@ -156,6 +178,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!stoppedReason}
             />
             <ExcelValue
                 name="stoppedDate"
@@ -164,6 +187,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.date.test(stoppedDate)}
             />
             <ExcelValue
                 name="note"
@@ -180,6 +204,7 @@ const ExcelPaymentStoppedTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!transferAddress && stoppedReason === '전출'}
             />
         </tr>
     );

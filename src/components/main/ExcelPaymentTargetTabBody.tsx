@@ -4,6 +4,7 @@ import { paymentTargetTabType } from "../../models/response";
 import ExcelValue from "./ExcelValue";
 import { useEditExcelTarget } from "../../utils/api/Allowance";
 import { debounce } from "lodash";
+import { regex } from "../../utils/functions/regex";
 
 const ExcelPaymentTargetTabBody = ({
     data,
@@ -74,6 +75,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.serialNumber.test(serialNumber)}
             />
             <ExcelValue
                 name="hangJungDong"
@@ -82,6 +84,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.hangjungdong.test(hangJungDong)}
             />
             <ExcelValue
                 name="veteransNumber"
@@ -90,6 +93,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.veteransNumber.test(veteransNumber)}
             />
             <ExcelValue
                 name="name"
@@ -98,6 +102,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(name)}
             />
             <ExcelValue
                 name="residentRegistrationNumber"
@@ -106,6 +111,11 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={
+                    !regex.residentRegistrationNumber.test(
+                        residentRegistrationNumber
+                    )
+                }
             />
             <ExcelValue
                 name="address"
@@ -114,6 +124,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!address}
             />
             <ExcelValue
                 name="depositType"
@@ -122,6 +133,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.depositType.test(depositType)}
             />
             <ExcelValue
                 name="bankName"
@@ -130,6 +142,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.bankName.test(bankName)}
             />
             <ExcelValue
                 name="accountHolder"
@@ -138,6 +151,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(accountHolder)}
             />
             <ExcelValue
                 name="bankAccountNumber"
@@ -146,6 +160,14 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={
+                    !regex
+                        .newBankAccountNumber(bankName.split(":")[0])
+                        .test(bankAccountNumber) &&
+                    !regex
+                        .oldBankAccountNumber(bankName.split(":")[0])
+                        .test(bankAccountNumber)
+                }
             />
             <ExcelValue
                 name="sibi"
@@ -154,6 +176,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!sibi}
             />
             <ExcelValue
                 name="gubi"
@@ -162,6 +185,7 @@ const ExcelPaymentTargetTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!gubi}
             />
             <ExcelValue
                 name="note"

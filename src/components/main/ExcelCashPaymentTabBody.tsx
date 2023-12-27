@@ -4,6 +4,7 @@ import { cashPaymentTabType } from "../../models/response";
 import ExcelValue from "./ExcelValue";
 import { useEditExcelCash } from "../../utils/api/Allowance";
 import { debounce } from "lodash";
+import { regex } from "../../utils/functions/regex";
 
 const ExcelCashPaymentTabBody = ({
     data,
@@ -68,6 +69,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.serialNumber.test(serialNumber)}
             />
             <ExcelValue
                 name="hangJungDong"
@@ -76,6 +78,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.hangjungdong.test(hangJungDong)}
             />
             <ExcelValue
                 name="veteransNumber"
@@ -84,6 +87,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.veteransNumber.test(veteransNumber)}
             />
             <ExcelValue
                 name="name"
@@ -92,6 +96,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.name.test(name)}
             />
             <ExcelValue
                 name="residentRegistrationNumber"
@@ -100,6 +105,11 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={
+                    !regex.residentRegistrationNumber.test(
+                        residentRegistrationNumber
+                    )
+                }
             />
             <ExcelValue
                 name="address"
@@ -108,6 +118,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!address}
             />
             <ExcelValue
                 name="depositType"
@@ -116,6 +127,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!regex.depositType.test(depositType)}
             />
             <ExcelValue
                 name="sibi"
@@ -124,6 +136,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!sibi}
             />
             <ExcelValue
                 name="gubi"
@@ -132,6 +145,7 @@ const ExcelCashPaymentTabBody = ({
                     handleChange(e);
                     editExcelForm();
                 }}
+                error={!gubi}
             />
             <ExcelValue
                 name="note"
