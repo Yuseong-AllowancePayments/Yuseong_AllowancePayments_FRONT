@@ -21,7 +21,6 @@ const NewComerHonorableAllowanceTabBody = ({
         applicantID: "",
         applicantName: "",
         applicantPhoneNumber: "",
-        applicantPostalCode: "",
         applicationDate: "",
         applicationReason: "",
         bankAccountNumber: "",
@@ -45,7 +44,6 @@ const NewComerHonorableAllowanceTabBody = ({
         applicantID,
         applicantName,
         applicantPhoneNumber,
-        applicantPostalCode,
         applicationDate,
         applicationReason,
         bankAccountNumber,
@@ -84,7 +82,6 @@ const NewComerHonorableAllowanceTabBody = ({
             applicantID: data.applicantID,
             applicantName: data.applicantName,
             applicantPhoneNumber: data.applicantPhoneNumber,
-            applicantPostalCode: data.applicantPostalCode,
             applicationDate: data.applicationDate,
             applicationReason: data.applicationReason,
             bankAccountNumber: data.bankAccountNumber,
@@ -166,15 +163,6 @@ const NewComerHonorableAllowanceTabBody = ({
                     editExcelForm();
                 }}
                 error={!applicantGender}
-            />
-            <ExcelValue
-                name="applicantPostalCode"
-                value={applicantPostalCode}
-                handleChange={(e) => {
-                    handleChange(e);
-                    editExcelForm();
-                }}
-                error={!regex.postalCode.test(applicantPostalCode)}
             />
             <ExcelValue
                 name="applicantAddressDetail"

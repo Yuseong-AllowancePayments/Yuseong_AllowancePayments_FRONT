@@ -47,7 +47,6 @@ export interface newComerTabType {
     applicantName: string;
     applicantID: string;
     applicantBirthday?: string;
-    applicantPostalCode: string;
     applicantAddressDetail: string;
     applicantPhoneNumber: string;
     hangJungDong: string;

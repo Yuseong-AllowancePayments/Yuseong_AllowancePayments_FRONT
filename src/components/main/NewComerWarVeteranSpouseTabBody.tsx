@@ -20,7 +20,6 @@ const NewComerWarVeteranSpouseTabBody = ({
         applicantID: "",
         applicantName: "",
         applicantPhoneNumber: "",
-        applicantPostalCode: "",
         applicationDate: "",
         applicationReason: "",
         bankAccountNumber: "",
@@ -43,7 +42,6 @@ const NewComerWarVeteranSpouseTabBody = ({
         applicantID,
         applicantName,
         applicantPhoneNumber,
-        applicantPostalCode,
         applicationDate,
         applicationReason,
         bankAccountNumber,
@@ -81,7 +79,6 @@ const NewComerWarVeteranSpouseTabBody = ({
             applicantID: data.applicantID,
             applicantName: data.applicantName,
             applicantPhoneNumber: data.applicantPhoneNumber,
-            applicantPostalCode: data.applicantPostalCode,
             applicationDate: data.applicationDate,
             applicationReason: data.applicationReason,
             bankAccountNumber: data.bankAccountNumber,
@@ -146,15 +143,6 @@ const NewComerWarVeteranSpouseTabBody = ({
                     editExcelForm();
                 }}
                 error={!regex.phoneNumber.test(applicantPhoneNumber)}
-            />
-            <ExcelValue
-                name="applicantPostalCode"
-                value={applicantPostalCode}
-                handleChange={(e) => {
-                    handleChange(e);
-                    editExcelForm();
-                }}
-                error={!regex.postalCode.test(applicantPostalCode)}
             />
             <ExcelValue
                 name="applicantAddressDetail"
